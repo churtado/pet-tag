@@ -1,3 +1,4 @@
+// src/app/core/pet-tag.model.ts
 export class PetTag {
   constructor(
     public shape: string,

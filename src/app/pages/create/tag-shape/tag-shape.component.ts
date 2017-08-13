@@ -5,14 +5,15 @@ import { Component, Output, EventEmitter } from '@angular/core';
   templateUrl: './tag-shape.component.html',
   styleUrls: ['./tag-shape.component.css']
 })
-export class TagShapeComponent {
+export class TagShapeComponent  {
+
   tagShape: string;
   @Output() selectShapeEvent = new EventEmitter();
 
   constructor() { }
 
-  selectShape(shape: string) {
+  selectShape(shape: string) { 
     this.selectShapeEvent.emit(shape);
   }
-
+  
 }

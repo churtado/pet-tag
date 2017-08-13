@@ -20,4 +20,5 @@ export class TagExtrasComponent {
   toggleGems() {
     this.toggleGemsEvent.emit();
   }
+
 }

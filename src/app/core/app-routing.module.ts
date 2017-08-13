@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from './auth.guard';
 
 import { HomeComponent } from '../pages/home/home.component';
-import { CreateComponent } from './../pages/create/create.component';
-import { CompleteComponent } from './../pages/complete/complete.component';
+import { CreateComponent } from '../pages/create/create.component';
+import { CompleteComponent } from '../pages/complete/complete.component';
 
 @NgModule({
   imports: [
@@ -15,30 +14,23 @@ import { CompleteComponent } from './../pages/complete/complete.component';
       },
       {
         path: 'create',
-        component: CreateComponent,
-        canActivate: [
-          AuthGuard
-        ]
+        component: CreateComponent
       },
       {
         path: 'complete',
-        component: CompleteComponent,
-        canActivate: [
-          AuthGuard
-        ]
+        component: CompleteComponent
       },
       {
         path: '**',
         redirectTo: '',
         pathMatch: 'full'
-      }
+      },
     ])
   ],
-  providers: [
-    AuthGuard
-  ],
+  providers: [],
   exports: [
     RouterModule
   ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
+

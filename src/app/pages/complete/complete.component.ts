@@ -4,35 +4,35 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { RESET } from './../../core/pet-tag.actions';
 import { PetTag } from './../../core/pet-tag.model';
-import { AuthService } from './../../core/auth.service';
+
 
 @Component({
   selector: 'app-complete',
-  templateUrl: './complete.component.html'
+  templateUrl: './complete.component.html',
 })
-export class CompleteComponent implements OnInit, OnDestroy {
+export class CompleteComponent implements OnInit {
   tagState$: Observable<PetTag>;
   private tagStateSubscription: Subscription;
   petTag: PetTag;
 
-  constructor(private store: Store<PetTag>, public auth: AuthService) {
+  constructor(private store: Store<PetTag>) {
     this.tagState$ = store.select('petTag');
   }
 
   ngOnInit() {
     this.tagStateSubscription = this.tagState$.subscribe((state) => {
       this.petTag = state;
-    });
+    })
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(){
     this.tagStateSubscription.unsubscribe();
   }
 
-  newTag() {
+  newTag(){
     this.store.dispatch({
-      type: RESET
-    });
+    type: RESET
+    })
   }
 
 }

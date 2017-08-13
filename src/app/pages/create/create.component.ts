@@ -2,13 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
-import { SELECT_SHAPE, SELECT_FONT, ADD_TEXT, TOGGLE_CLIP, TOGGLE_GEMS, COMPLETE } from './../../core/pet-tag.actions';
+import { SELECT_SHAPE, SELECT_FONT, ADD_TEXT, TOGGLE_CLIP, TOGGLE_GEMS, COMPLETE } from './../../core/pet-tag.actions'
 import { PetTag } from './../../core/pet-tag.model';
-import { AuthService } from './../../core/auth.service';
 
 @Component({
   selector: 'app-create',
-  templateUrl: './create.component.html'
+  templateUrl: './create.component.html',
 })
 export class CreateComponent implements OnInit, OnDestroy {
   tagState$: Observable<PetTag>;
@@ -16,7 +15,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   petTag: PetTag;
   done = false;
 
-  constructor(private store: Store<PetTag>, public auth: AuthService) {
+  constructor(private store: Store<PetTag>) {
     this.tagState$ = store.select('petTag');
   }
 
@@ -24,7 +23,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     this.tagStateSubscription = this.tagState$.subscribe((state) => {
       this.petTag = state;
       this.done = !!(this.petTag.shape && this.petTag.text);
-    });
+    })
   }
 
   ngOnDestroy() {
@@ -58,13 +57,13 @@ export class CreateComponent implements OnInit, OnDestroy {
     });
   }
 
-  toggleGemsHandler() {
+  toggleGemsHandler(shape: string) {
     this.store.dispatch({
       type: TOGGLE_GEMS
     });
   }
 
-  submit() {
+  submit(){
     this.store.dispatch({
       type: COMPLETE,
       payload: true
